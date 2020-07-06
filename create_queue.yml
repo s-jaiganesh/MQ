@@ -1,0 +1,15 @@
+---
+- hosts:
+  tasks:
+    - name: Create Queue
+      manage_mq:
+        MQMGR: "{{ mqmgr }}"
+        QNAME: "{{ qname }}"
+        MAXDEPTH: "{{ maxdepth }}"
+        DESCR: "{{ desc }}"
+        MAXMSGL: "{{ maxlen }}"
+        state: "present"
+     register: create_Q
+    - Name: Debug msg
+      debug:
+        msg: "{{ create_Q.stdout_lines }}"
